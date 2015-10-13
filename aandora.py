@@ -10,14 +10,18 @@ print "\nHALF TRIANGLE\n"
 half_triangle(5)
 
 def pyramid_a(number):
-	width = number*2-1;
-	median = number - 1;
+	width = number*4+1;
+	median = number*2;
 	for i in xrange(0, number):
 		for j in xrange(0, width):
-			if(abs(j-median)>i):
+			diff = abs(j-median)
+			if(diff>2*i):
 				sys.stdout.write(" ")
 			else:
-				sys.stdout.write("1")
+				if(diff%2==0):
+					sys.stdout.write("1")
+				else:
+					sys.stdout.write(" ")
 		print ""
 
 print "\nPYRAMID A\n"
