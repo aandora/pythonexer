@@ -1,4 +1,4 @@
-set = xrange(0, 5000)
+set = xrange(0, 20)
 
 def fibonacci(n):
 	prev1 = 1
