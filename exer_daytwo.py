@@ -1,5 +1,4 @@
-word_sequence = ['appa', 'bob', 'dud', 'gniing', 'eettimmocommittee']
-dletters = ['aa', 'bb', 'cc', 'dd', 'ee', 'ff', 'gg', 'hh', 'ii', 'jj', 'kk', 'll', 'mm', 'nn', 'oo', 'pp', 'qq', 'rr', 'ss', 'tt', 'uu', 'vv', 'ww', 'xx', 'yy', 'zz']
+word_sequence = ['appa', 'bob', 'dud', 'gniing', 'eettimmocommittee', '10010001001', '10110001101', '10']
 
 #Item 3. Palindrome checker
 def palindrome(func):
@@ -17,7 +16,7 @@ def palindrome(func):
 				second_half = item[med:len(item)]
 				second_half = second_half[::-1]
 				if(first_half!=second_half):
-					return 'not all items are palindrome'
+					seq.remove(item)
 
 		return func(seq)
 
@@ -29,18 +28,39 @@ def palindrome(func):
 def list_unique_letter_count(words):
 	return [len(set(word)) for word in words]
 
-def generate_double_letter_dict(word):
+def generate_repeating_letter_dict(word):
 	dllist = {}
-	for l in dletters:
-		c = word.count(l)
-		if(c>0):
-			dllist[l]=c
+	temp = ''
+	for letter in word:
+		if len(temp)>0:
+			if letter == temp[0]:
+				temp += letter
+			else:
+				if len(temp)>1:
+					if(temp in dllist.keys()):
+						dllist[temp] += 1
+					else:
+						dllist[temp] = 1
+				temp = letter
+		else:
+			temp = letter
+	if len(temp) > 1:
+		if(temp in dllist.keys()):
+			dllist[temp] += 1
+		else:
+			dllist[temp] = 1
 	return dllist
 
 #Item 2: 
 @palindrome
 def list_double_letters(words):
-	return [generate_double_letter_dict(item) for item in words]
+	dllist = []
+	for item in words:
+		dlist = generate_repeating_letter_dict(item)
+		if len(dlist.keys()) > 0:
+			dllist.append(dlist)
+	
+	return dllist
 
 
 print 'unique letters: ', list_unique_letter_count(word_sequence)
