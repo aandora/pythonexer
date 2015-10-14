@@ -30,19 +30,22 @@ def compute(s, **keywords):
 				modelist.append(i)
 		return modelist
 
+	def get_sum():
+		sumsum = 0
+		for i in s:
+			sumsum += i
+		return sumsum
 
-	if(keywords['opt']=='mean'):
-		return mean(s)
-	elif(keywords['opt']=='median'):
-		return find_median()
-	elif(keywords['opt']=='mode'):
-		return find_mode()
-	elif(keywords['opt']=='sum'):
-		return sum(s)
-	elif(keywords['opt']=='min'):
-		return s[0]
-	elif(keywords['opt']=='max'):
-		return s[l-1]
+	operations = {}
+	operations['mean'] = mean(s)
+	operations['median'] = find_median()
+	operations['mode'] = find_mode()
+	operations['sum'] = get_sum()
+	operations['min'] = s[0]
+	operations['max'] = s[l-1]
+
+	return operations[keywords['opt']]
+	
 
 
 print 'for the sequence', sequence, ':'
