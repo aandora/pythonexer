@@ -1,0 +1,15 @@
+{% from "default/macros.html" import person_item with context %}
+{% extends "base.html" %}
+
+{% block pagetitle %} Jinja Samples {% endblock %}
+
+{% block content %}
+
+    People are:
+    <ul> 
+    {% for person in person_list %}
+        {{ person_item(person) }}
+    {% endfor %}
+    </ul>
+
+{% endblock %}

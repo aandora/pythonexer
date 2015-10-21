@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block pagetitle %} Jinja Samples {% endblock %}
+
+{% block content %}
+
+    The items are:
+    <ul> 
+    {% for key in items.keys() %}
+        <li>{{ key }} {{ items[key] }} @ {{ prices[key] }} = {{ subtotals[key] }}</li>
+    {% endfor %}
+    </ul>
+
+    <p>TOTAL: {{ subtotals.values()|sum }}</p>
+
+{% endblock %}

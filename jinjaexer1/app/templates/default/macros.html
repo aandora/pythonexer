@@ -1,0 +1,7 @@
+{% macro person_item(person) %}
+{% if person.gender == 'F' %}
+    <li>{{person.name}} is Female.</li>
+{% else %}
+    <li>{{person.name}} is Male.</li>
+{% endif %}
+{% endmacro %}

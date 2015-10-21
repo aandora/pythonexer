@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block pagetitle %} Jinja Samples {% endblock %}
+
+{% block content %}
+
+    Numbers are:
+    <ul> 
+    {% for number in numbers %}
+        <li>{{ number }}</li>
+    {% endfor %}
+    </ul>
+
+{% endblock %}

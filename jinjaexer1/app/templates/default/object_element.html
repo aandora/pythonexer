@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block pagetitle %} Jinja Samples {% endblock %}
+
+{% block content %}
+
+    People are:
+    <ul> 
+    {% for person in person_list %}
+        <li>{{ person.name }} is aged {{ person.age }}</li>
+    {% endfor %}
+    </ul>
+
+{% endblock %}

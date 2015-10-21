@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block pagetitle %} Jinja Samples {% endblock %}
+
+{% block content %}
+
+    Numbers are:
+    <ul> 
+    {% for number in numbers %}
+        {% if number%2==0 %}
+            <li>{{ number }} is even</li>
+        {% elif number%3==0 %}
+            <li>{{ number }} is divisible by 3</li>
+        {% else %}
+            <li>{{ number }} is odd</li>
+        {% endif %}
+    {% endfor %}
+    </ul>
+
+{% endblock %}
