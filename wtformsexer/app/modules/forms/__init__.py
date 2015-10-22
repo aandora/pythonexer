@@ -1,0 +1,3 @@
+from reg_form import RegistrationForm
+from inventory_form import InventoryForm
+from shopping_form import ShoppingForm

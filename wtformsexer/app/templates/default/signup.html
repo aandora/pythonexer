@@ -1,0 +1,37 @@
+{% from "macros/regform_macro.html" import render_field %}
+{% extends "base.html" %}
+
+{% block title %}
+Bucket List - Login
+{% endblock %}
+
+{% block cssimports %}
+<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/signin.css')}}"/>
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+<form class='form-signin' method='post' action="{{url_for('default.register')}}">
+    <h2 class="form-signin-heading">Please sign up</h2>
+    <dl>
+    {{ render_field(form.username) }}
+    {{ render_field(form.email) }}
+    {{ render_field(form.password) }}
+    {{ render_field(form.confirm) }}
+    {{ render_field(form.accept_tos) }}
+    </dl>
+    {% with messages = get_flashed_messages(category_filter=["signup_failure"]) %}
+    {% for message in messages %}
+        <div class="alert alert-danger alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            {{message}}
+        </div>
+    {% endfor %}
+    {% endwith%}
+    <input class='btn btn-lg btn-primary btn-block' type='submit' />
+</form>
+</div>
+{% endblock %}

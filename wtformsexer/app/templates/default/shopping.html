@@ -1,0 +1,68 @@
+{% from "macros/shopping_macro.html" import render_field %}
+{% extends "base.html" %}
+
+{% block title %}
+Bucket List - Login
+{% endblock %}
+
+{% block cssimports %}
+<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/signin.css')}}"/>
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-6">
+            
+            <form class='form-shopping' method='POST' action="/shopping">
+                <dl>
+                    {% for key in productform.productfields.keys() %}
+                        {{ render_field(producform.productfields[key]) }}
+                    {% endfor %}
+                </dl>
+                {% with messages = get_flashed_messages(category_filter=["signup_failure"]) %}
+                {% for message in messages %}
+                <div class="alert alert-danger alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    {{message}}
+                </div>
+                {% endfor %}
+                {% endwith%}
+            </form>
+
+            <p>length {{ products|length }}</p>
+            <ul>
+            {% for key in products.keys() %}
+                <li>{{ key }} {{ products[key] }}</li>
+            {% endfor %}
+            </ul>
+            
+            <form class='form-inventory' method='POST' action="/shopping">
+                <dl>
+                    {{ render_field(inventoryform.itemname) }}
+                    {{ render_field(inventoryform.price) }}
+                </dl>
+                {% with messages = get_flashed_messages(category_filter=["signup_failure"]) %}
+                {% for message in messages %}
+                <div class="alert alert-danger alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    {{message}}
+                </div>
+                {% endfor %}
+                {% endwith%}
+                <input class='btn btn-lg btn-primary btn-block' name="btn" type='submit' value="Add Item" />
+            </form>
+        </div>
+        <div class="col-xs-6">
+            <p>Hello World</p>
+        </div>
+    </div>
+
+
+</div>
+{% endblock %}
