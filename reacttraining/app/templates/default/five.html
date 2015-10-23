@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block pagetitle %} Jinja Samples {% endblock %}
+
+{% block content %}
+
+    <div id='example'></div>
+    
+{% endblock %}
+
+{% block jsimports %}
+
+    <script type="text/jsx" src="{{url_for('static', filename='js/samples/2.js')}}"></script>
+    <script type="text/jsx" src="{{url_for('static', filename='js/samples/4.js')}}"></script>
+    <script type="text/jsx" src="{{url_for('static', filename='js/samples/5.js')}}"></script>
+    <script type="text/jsx">
+        var sample_data = [
+            {'author':'Ali', 'post':'Lorem ipsum'},
+            {'author':'Ruth', 'post':'Dolor sit amet'},
+            {'author':'Andrew', 'post':'Consectetur Adipiscing Elit'}
+        ]
+        React.render(
+            <PostBox data={sample_data} />,
+            document.getElementById('example')
+        );
+    </script>
+
+{% endblock %}

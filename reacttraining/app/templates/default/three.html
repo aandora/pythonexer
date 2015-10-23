@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block pagetitle %} Jinja Samples {% endblock %}
+
+{% block content %}
+
+    <div id='example'></div>
+    
+{% endblock %}
+
+{% block jsimports %}
+
+    <script type="text/jsx" src="{{url_for('static', filename='js/samples/1.js')}}"></script>
+    <script type="text/jsx" src="{{url_for('static', filename='js/samples/2.js')}}"></script>
+    <script type="text/jsx" src="{{url_for('static', filename='js/samples/3.js')}}"></script>
+    <script type="text/jsx">
+        React.render(
+            React.createElement(PostBox, null),
+            document.getElementById('example')
+        );
+    </script>
+
+{% endblock %}

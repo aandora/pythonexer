@@ -1,0 +1,30 @@
+{% extends "shopping_base.html" %}
+
+{% block pagetitle %} Jinja Samples {% endblock %}
+
+{% block content %}
+
+	<div class="container-fluid">
+  		<div class="row">
+  			<div class="col-md-6" id='transactions' style="border: 1px solid #FF5577;"></div>
+  			<div class="col-md-6" id='summary' style="border: 1px solid #77FF55;"></div>
+  		</div>
+	</div>
+    
+{% endblock %}
+
+{% block jsimports %}
+
+    <script type="text/jsx" src="{{url_for('static', filename='js/samples/shopping.js')}}"></script>
+    <script type="text/jsx">
+        React.render(
+        	<Inventory geturl='/get_products' posturl='/add_product' />,
+        	document.getElementById('transactions')
+        );
+        React.render(
+          <CartList geturl='/get_products' posturl='/add_product' />,
+          document.getElementById('summary')
+        );
+    </script>
+
+{% endblock %}

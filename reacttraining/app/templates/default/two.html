@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block pagetitle %} Jinja Samples {% endblock %}
+
+{% block content %}
+
+    <div id='example' style='background-color:#FF6600;'></div>
+    <div id='example_two' style='background-color:#99CCFF'></div>
+
+{% endblock %}
+
+{% block jsimports %}
+
+    <script type="text/jsx" src="{{url_for('static', filename='js/samples/2.js')}}"></script>
+    <script type="text/jsx">
+        React.render(
+            React.createElement(PostList, null),
+            document.getElementById('example')
+        );
+        React.render(
+            React.createElement(PostForm, null),
+            document.getElementById('example_two')
+        );
+    </script>
+
+{% endblock %}

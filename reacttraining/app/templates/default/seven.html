@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block pagetitle %} Jinja Samples {% endblock %}
+
+{% block content %}
+
+    <div id='example'></div>
+    
+{% endblock %}
+
+{% block jsimports %}
+
+    <script type="text/jsx" src="{{url_for('static', filename='js/samples/2.js')}}"></script>
+    <script type="text/jsx" src="{{url_for('static', filename='js/samples/4.js')}}"></script>
+    <script type="text/jsx" src="{{url_for('static', filename='js/samples/7.js')}}"></script>
+    <script type="text/jsx">
+        React.render(
+            <PostBox url='/getsampledata' pollInterval={2000}/>,
+            document.getElementById('example')
+        );
+    </script>
+
+{% endblock %}
