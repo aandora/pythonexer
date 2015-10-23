@@ -241,10 +241,67 @@ var Inventory = React.createClass({
   }
 });
 
-var CartList = React.createClass({
+var CartItem = React.createClass({
   render: function(){
     return(
-        <h3>Summary</h3>
+      <tr>
+        <td>&nbsp;&nbsp;{this.props.name}&nbsp;&nbsp;</td>
+        <td>&nbsp;&nbsp;{this.props.quantity}&nbsp;&nbsp;</td>
+        <td>&nbsp;&nbsp;{this.props.subtotal}&nbsp;&nbsp;</td>
+      </tr>
+    );
+  }
+});
+
+var CartList = React.createClass({
+  render: function() {
+    var nodes = this.props.data.map(function (item, index) {
+      return (
+        <CartItem key={index} name={item.name} quantity={item.quantity} subtotal={item.subtotal} />
+      );
+    });
+    return (
+      <table>
+        <tr>
+          <td>&nbsp;&nbsp;Item&nbsp;&nbsp;</td>
+          <td>&nbsp;&nbsp;Quantity&nbsp;&nbsp;</td>
+          <td>&nbsp;&nbsp;Subtotal&nbsp;&nbsp;</td>
+        </tr>
+        {nodes}
+      </table>
+    );
+  }
+});
+
+var CartTable = React.createClass({
+  getInitialState: function() {
+    return {data: [], total: 0};
+  },
+  getDataFromServer: function(){
+    $.ajax({
+      url: '/display_orders',
+      dataType: 'json',
+      cache: false,
+      success: function(data) {
+        var postDict = JSON.parse(JSON.stringify(data));
+        console.log(JSON.stringify(data));   
+        this.setState({data: postDict['items'], total: postDict['total']});
+      }.bind(this),
+      error: function(xhr, status, err) {
+        console.error(this.props.geturl, status, err.toString());
+      }.bind(this)
+    });
+  },
+  componentDidMount: function() {
+    this.interval = setInterval(this.getDataFromServer, 5000);
+  },
+  render: function(){
+    return(
+        <div>
+          <h3>Summary</h3>
+          <CartList data={this.state.data} />
+          <h5>TOTAL: {this.state.total}</h5>
+        </div>
       );
   }
 });

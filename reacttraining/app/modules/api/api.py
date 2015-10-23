@@ -38,7 +38,7 @@ def add_product():
         'name': request.form['item_name'], 
         'price': request.form['item_price']
     })
-    return jsonify(items=product_list, total=get_sum())
+    return jsonify(items=product_list)
 
 @mod.route('/add_to_cart', methods=['POST'])
 def add_to_cart():
@@ -51,7 +51,12 @@ def add_to_cart():
         'quantity':qty,
         'subtotal':subttl
     });
-    return jsonify(items=cart_list)
+    total = get_sum();
+    return jsonify(items=cart_list, total=get_sum())
+
+@mod.route('/display_orders', methods=['GET'])
+def display_orders():
+    return jsonify(items=cart_list, total=get_sum())
 
 @mod.route('/get_products', methods=['GET'])
 def get_products():
